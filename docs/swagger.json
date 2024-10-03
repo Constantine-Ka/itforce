@@ -1,0 +1,153 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Тестовое задание.",
+        "title": "itForce",
+        "contact": {
+            "name": "Константин",
+            "url": "https://t.me/London68"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/history": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Показывает историю по одному или всем пользователям",
+                "operationId": "pistory-handler",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Идентификатор пользователя",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/repositories.ActionHistory"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorShort"
+                        }
+                    }
+                }
+            }
+        },
+        "/purchase": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Изменяет баланс. Использует Мьютексы, для блокировки параллельного изменения данных",
+                "operationId": "purchase-handler",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Идентификатор пользователя",
+                        "name": "user",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Сумма списания",
+                        "name": "amount",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorMsg"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorMsg"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.ErrorMsg": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "historyId": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.ErrorShort": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "repositories.ActionHistory": {
+            "type": "object",
+            "properties": {
+                "actionEng": {
+                    "type": "string"
+                },
+                "actionRus": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "currentbalance": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "ts": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "integer"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/d4b27dd4-82c5-440d-8672-df3bd16f8e65/console_3.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/internal/repositories/actionhistory.go" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/migration/acton_history.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migration/dict_action.up.sql" dialect="PostgreSQL" />
+  </component>
+</project>

@@ -1,0 +1,101 @@
+definitions:
+  api.ErrorMsg:
+    properties:
+      amount:
+        type: string
+      balance:
+        type: number
+      historyId:
+        type: integer
+      message:
+        type: string
+      mode:
+        type: string
+      userId:
+        type: string
+    type: object
+  api.ErrorShort:
+    properties:
+      message:
+        type: string
+      userId:
+        type: string
+    type: object
+  repositories.ActionHistory:
+    properties:
+      actionEng:
+        type: string
+      actionRus:
+        type: string
+      amount:
+        type: number
+      currentbalance:
+        type: number
+      id:
+        type: integer
+      ts:
+        type: string
+      userId:
+        type: integer
+      username:
+        type: string
+    type: object
+info:
+  contact:
+    name: Константин
+    url: https://t.me/London68
+  description: Тестовое задание.
+  title: itForce
+  version: "1.0"
+paths:
+  /history:
+    get:
+      operationId: pistory-handler
+      parameters:
+      - description: Идентификатор пользователя
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/repositories.ActionHistory'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.ErrorShort'
+      summary: Показывает историю по одному или всем пользователям
+  /purchase:
+    get:
+      operationId: purchase-handler
+      parameters:
+      - description: Идентификатор пользователя
+        in: query
+        name: user
+        required: true
+        type: string
+      - description: Сумма списания
+        in: query
+        name: amount
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ErrorMsg'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.ErrorMsg'
+      summary: Изменяет баланс. Использует Мьютексы, для блокировки параллельного
+        изменения данных
+swagger: "2.0"
