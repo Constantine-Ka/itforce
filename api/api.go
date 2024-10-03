@@ -35,10 +35,10 @@ var lock = sync.Mutex{}
 //
 // @Success 200 {object} api.ErrorMsg
 // @Failure 400 {object} api.ErrorMsg
-// @Router /purchase [get]
+// @Router /purchase [post]
 func PurchaseHandler(c echo.Context, db *sqlx.DB) error {
-	user := c.QueryParam("user")
-	amountStr := c.QueryParam("amount")
+	user := c.FormValue("user")
+	amountStr := c.FormValue("amount")
 	errMSG := ErrorMsg{
 		Amount: amountStr,
 		UserId: user,

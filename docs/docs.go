@@ -54,7 +54,7 @@ const docTemplate = `{
             }
         },
         "/purchase": {
-            "get": {
+            "post": {
                 "produces": [
                     "application/json"
                 ],

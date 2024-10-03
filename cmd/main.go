@@ -32,7 +32,7 @@ func main() {
 
 	e := echo.New()
 
-	e.GET("/purchase", func(c echo.Context) error {
+	e.POST("/purchase", func(c echo.Context) error {
 		return api.PurchaseHandler(c, db)
 	})
 	e.GET("/history/:id", func(c echo.Context) error {

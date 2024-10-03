@@ -72,7 +72,7 @@ paths:
             $ref: '#/definitions/api.ErrorShort'
       summary: Показывает историю по одному или всем пользователям
   /purchase:
-    get:
+    post:
       operationId: purchase-handler
       parameters:
       - description: Идентификатор пользователя

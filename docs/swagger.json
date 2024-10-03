@@ -46,7 +46,7 @@
             }
         },
         "/purchase": {
-            "get": {
+            "post": {
                 "produces": [
                     "application/json"
                 ],
